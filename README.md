@@ -29,14 +29,13 @@
 Huge thanks to wackyideas for creating [Aero theme for Plasma](https://gitgud.io/wackyideas/aerothemeplasma), this SDDM theme uses some assets and codes from that theme.
 
 ## Missing Features
-Missing features from Windows 10 login screen that's planned to be added in the future:
+Missing features from Windows 7 login screen that's planned to be added in the future:
 
-- On-Screen Keyboard
 - Successful login message [(this is a SDDM bug, waiting it to be fixed)](https://github.com/sddm/sddm/issues/1960)
 
 ## Requirements
 
->[!IMPORTANT]
+> [!CAUTION]
 >Please install [Segoe UI Regular](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Regular.ttf) and
   [Segoe UI Light](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Light.ttf)
       font to use this SDDM theme!
@@ -44,6 +43,10 @@ Missing features from Windows 10 login screen that's planned to be added in the 
 You only need to have SDDM installed and don't need any other extra Qt 5 or 6 plugins to install!
 
 ## Installation
+
+> [!CAUTION]
+>This theme is being developed and tested on KDE Plasma! Only Qt 6 and higher versions are supported!
+>On paper, this theme should be able to work on other desktop environments and other Qt versions but you might need to install a Qt package for it.
 
 You can use installation script to install this theme, [required fonts](#requirements) and [Windows Cursors](https://github.com/birbkeks/windows-cursors)! 
 
@@ -53,7 +56,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
->[!IMPORTANT]
+> [!CAUTION]
 >Please make sure to install [required fonts](#requirements) first!
 
 ### From KDE Plasma system settings:
