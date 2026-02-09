@@ -1,4 +1,9 @@
 # Windows 7 Login Screen SDDM Theme
+Microsoft® Windows™ is a registered trademark of Microsoft® Corporation. This name is used for referential use only, and does not aim to usurp copyrights from Microsoft. Microsoft Ⓒ 2026 All rights reserved. All resources belong to Microsoft Corporation.
+
+Segoe™ is a registered trademark of the Microsoft® group of companies. This font family is used for referential use only, and does not aim to usurp copyrights from Microsoft.
+
+Huge thanks to wackyideas for creating [Aero theme for Plasma](https://gitgud.io/wackyideas/aerothemeplasma), this SDDM theme uses some assets and codes from that theme.
 
 ## Table of contents
 
@@ -6,9 +11,8 @@
 2. [Missing Features](#missing-features)
 3. [Requirement](#requirements)
 4. [Installation](#installation)
-   - [From KDE Plasma system settings](#from-kde-plasma-system-settings)
-   - [Manual installation on KDE Plasma desktop environment](#manual-installation-on-kde-plasma-desktop-environment)
-   - [If you're not using KDE Plasma](#if-youre-not-using-kde-plasma)
+   - [With installation script](#with-installation-script)
+   - [Manual installation](#manual-installation)
 
 5. [Testing](#testing)
 
@@ -24,55 +28,71 @@
 
 </details>
 
-## Note
-
-Huge thanks to wackyideas for creating [Aero theme for Plasma](https://gitgud.io/wackyideas/aerothemeplasma), this SDDM theme uses some assets and codes from that theme.
-
 ## Missing Features
 Missing features from Windows 7 login screen that's planned to be added in the future:
 
 - Successful login message [(this is a SDDM bug, waiting it to be fixed)](https://github.com/sddm/sddm/issues/1960)
 
 ## Requirements
+> [!NOTE]
+>It is no longer required to install Segoe UI font family and Segoe MDL2 Assets font family since they are now included in the theme directory under "fonts" folder. 
 
-> [!CAUTION]
->Please install [Segoe UI Regular](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Regular.ttf) and
-  [Segoe UI Light](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Light.ttf)
-      font to use this SDDM theme!
+No extra Qt packages are required for KDE Plasma/Qt 6 or higher versions.
 
-No extra Qt packages are required for 6 and higher versions of KDE Plasma and Qt.
-On XFCE or other desktop environments might require additional Qt packages. (Currently I do not know which ones are required.)
-
-> [!IMPORTANT]
->5 and lower versions of KDE Plasma/Qt might require additional Qt packages but there are no quarantee of the theme working properly. Please do NOT open an issue if you are using older versions of KDE Plasma/Qt.
+Other desktop environments might require; 
+```
+  qt5-declarative
+  qt6-5compat
+  qt6-base
+  qt6-declarative
+  qt6-multimedia
+  qt6-multimedia-ffmpeg
+  qt6-shadertools
+  qt6-svg
+  qt6-translations
+  qt6-virtualkeyboard
+```
+package(s) to be installed in order for this theme to work properly.
 
 ## Installation
+> [!CAUTION]
+>If you are not using KDE Plasma make sure to install the [required packages](#requirements)!
 
-You can use installation script to install this theme, [required fonts](#requirements) and [Windows Cursors](https://github.com/birbkeks/windows-cursors)! 
+> [!IMPORTANT]
+>KDE Plasma/Qt 5 or lower versions might require additional Qt packages but there are no quarantee of the theme working properly. <br>
+Please do NOT open an issue if you are using older versions of KDE Plasma/Qt, you're on your own.
+
+### With installation script 
+The installation script can be used to install the theme and apply it, install [Windows Cursors](https://github.com/syrupderg/windows-cursors) and [fix SDDM for Wayland and add On Screen Keyboard support](https://wiki.archlinux.org/title/SDDM#Wayland).
 
 ```
-wget https://raw.githubusercontent.com/birbkeks/win7-sddm-theme/main/install.sh
+curl -O https://raw.githubusercontent.com/syrupderg/win7-sddm-theme/main/install.sh
 chmod +x install.sh
 ./install.sh
 ```
 
-> [!CAUTION]
->Please make sure to install [required fonts](#requirements) first!
+### Manual installation:
+1. Get the theme from [github releases](https://github.com/syrupderg/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/). 
+2. Extract "win10-sddm-theme.tar.gz" to `/usr/share/sddm/themes/`.
+3. If you are using KDE Plasma you can either,
+   - Edit `/etc/sddm.conf.d/kde_settings.conf`  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme` <br>
+or
+   - Open System Settings -> Color & Themes -> Login Screen (SDDM) and pick win10-sddm-theme from there.
 
-### From KDE Plasma system settings:
-1. Open System Settings.
-2. Go to Colors & Themes and click on Login Screen (SDDM).
-3. Click on "Get New..." and search for this theme, and install it from there.
+4. If you are using other desktop environments,
+   - Edit `/etc/sddm.conf`  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
+5. Create a file named `10-wayland.conf` in the `/etc/sddm.conf.d/` directory.
+6. To fix SDDM for Wayland and to add On Screen Keyboard support, copy and paste:
+   ```
+   [General]
+   DisplayServer=wayland
+   GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell
+   
+   [Wayland]
+   CompositorCommand=kwin_wayland --drm --no-lockscreen --no-global-shortcuts --locale1 --inputmethod plasma-keyboard
+   ```
+   into `10-wayland.conf` and save the file.
 
-### Manual installation on KDE Plasma desktop environment:
-1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/) page! <br>
-2- Extract "win7-sddm-theme.tar.gz" to `/usr/share/sddm/themes`. <br>
-3- Edit /etc/sddm.conf.d/kde_settings.conf  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
-
-### If you're not using KDE Plasma:
-1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/) page! <br>
-2- Extract "win7-sddm-theme.tar.gz" to `/usr/share/sddm/themes`. <br>
-3- Edit /etc/sddm.conf  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
 
 ## Testing
 
