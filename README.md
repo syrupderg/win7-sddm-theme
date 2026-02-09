@@ -73,11 +73,11 @@ chmod +x install.sh
 
 ### Manual installation:
 1. Get the theme from [github releases](https://github.com/syrupderg/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/). 
-2. Extract "win10-sddm-theme.tar.gz" to `/usr/share/sddm/themes/`.
+2. Extract "win7-sddm-theme.tar.gz" to `/usr/share/sddm/themes/`.
 3. If you are using KDE Plasma you can either,
    - Edit `/etc/sddm.conf.d/kde_settings.conf`  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme` <br>
 or
-   - Open System Settings -> Color & Themes -> Login Screen (SDDM) and pick win10-sddm-theme from there.
+   - Open System Settings -> Color & Themes -> Login Screen (SDDM) and pick win7-sddm-theme from there.
 
 4. If you are using other desktop environments,
    - Edit `/etc/sddm.conf`  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
